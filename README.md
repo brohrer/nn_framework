@@ -8,6 +8,12 @@ coding exercises.
 
 Come give it a try.
 
+
+To run this code:
+
+> python3 run_framework.py
+
+
 The autoencoder visualization code used here is adapted from another
 End-to-End Machine Learning course, [Neural Network Visualization](https://end-to-end-machine-learning.teachable.com/p/neural-network-visualization).
 To understand it down to it's roots, you can walk through that course too.
