@@ -11,12 +11,14 @@ class abs(object):
 
     @staticmethod
     def calc_d(x, y):
-        return -np.sign(y - x)
+        return np.sign(y - x)
 
 
 class sqr(object):
-    def calc(self, x, y):
-        return np.sign(y - x) * (y - x)**2
+    @staticmethod
+    def calc(x, y):
+        return (y - x)**2
 
-    def cacl_d(self, x, y):
-        return -np.sign(y - x) * 2 * x
+    @staticmethod
+    def calc_d(x, y):
+        return -2 * (y - x)

@@ -13,9 +13,24 @@ class tanh(object):
         return 1 - np.tanh(v) ** 2
 
 
-def logit(v):
-    return 1 / (1 + np.exp(-v))
+def logistic(v):
+    @staticmethod
+    def calc(v):
+        return 1 / (1 + np.exp(-v))
+
+    @staticmethod
+    def calc_d(v):
+        return calc(v) * (1 - calc(v))
 
 
 def relu(v):
-    return np.maximum(0, v)
+    @staticmethod
+    def calc(v):
+        return np.maximum(0, v)
+
+    @staticmethod
+    def calc_d(v):
+        derivative = 0
+        if v > 0:
+            derivative = 1
+        return derivative
