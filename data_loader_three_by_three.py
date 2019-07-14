@@ -2,6 +2,22 @@ import numpy as np
 
 
 def get_data_sets():
+    """
+    This function creates two other functions that generate data.
+    One generates a training data set and the other, an evaluation set.
+
+    The examples have the format of a two-dimensional numpy array.
+    They can be thought of as a very small (three-pixel by three-pixel) image.
+
+
+    To use in a script:
+
+        import data_loader_three_by_three as dat
+
+        training_generator, evaluation_grenerator = dat.get_data_sets()
+        new_training_example = training_generator.next()
+        new_evaluation_example = evaluation_generator.next()
+    """
     examples = [
         np.array([
             [1, 1, 1],
@@ -94,7 +110,6 @@ def get_data_sets():
             [1, 1, 1],
         ]),
     ]
-    examples = examples[:16]
 
     def training_set():
         while True:

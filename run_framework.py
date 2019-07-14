@@ -5,7 +5,7 @@ import nn_framework.error_fun as error_fun
 import nn_framework.layer as layer
 from autoencoder_viz import Printer
 
-N_NODES = [20]
+N_NODES = [31, 22, 13]
 
 training_set, evaluation_set = dat.get_data_sets()
 

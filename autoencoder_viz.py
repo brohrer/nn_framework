@@ -15,7 +15,7 @@ class Printer(object):
         self.green = "#4c837a"
         self.tan = "#e1ddbf"
         self.cmap = "bone"
-        self.error_cmap = "twilight"
+        self.error_cmap = "RdGy"
         self.im_vmax = .5
         self.im_vmin = -.5
         self.DPI = 300
@@ -238,6 +238,7 @@ class Printer(object):
             vmin=self.im_vmin,
             vmax=self.im_vmax,
             cmap=self.cmap,
+            zorder=6,
         )
         image_axes.append([ax_input])
 
@@ -282,6 +283,7 @@ class Printer(object):
                 vmin=self.im_vmin,
                 vmax=self.im_vmax,
                 cmap=self.cmap,
+                zorder=6,
             )
             layer_axes.append(ax)
         image_axes.append(layer_axes)
@@ -305,6 +307,7 @@ class Printer(object):
             vmin=self.im_vmin,
             vmax=self.im_vmax,
             cmap=self.cmap,
+            zorder=6,
         )
         image_axes.append([ax_output])
 
@@ -323,6 +326,7 @@ class Printer(object):
             vmin=self.im_vmin,
             vmax=self.im_vmax,
             cmap=self.error_cmap,
+            zorder=6,
         )
 
     def add_image_axes(self, fig, image_axes, absolute_pos):
@@ -399,7 +403,7 @@ class Printer(object):
             conn_color = self.tan
         else:
             conn_color = self.blue
-        ax_boss.plot(x, y, color=conn_color, linewidth=2 * weight)
+        ax_boss.plot(x, y, color=conn_color, linewidth=weight)
 
     def save_nn_viz(self, fig, postfix="0"):
         """

@@ -1,8 +1,29 @@
+"""
+A dictionary of some real life cool-looking ancient runes,
+specifically Elder Futhark runes
+https://en.wikipedia.org/wiki/Runes#Elder_Futhark_(2nd_to_8th_centuries)
+
+Each rune is represented as a two-dimensional numpy array
+in a dictionary and can be rendered as a 7 x 7 image.
+The names of the runes (or a rough transliteration of them)
+are the keys of the dictionary.
+
+
+To see the runes as images, one by one:
+
+> python3 elder_futhark.py
+
+
+To use the runes in another script:
+
+import elder_futhark as ef
+
+my_rune_dict = ef.runes
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Elder Futhark runes
-# https://en.wikipedia.org/wiki/Runes#Younger_Futhark_(9th_to_11th_centuries)
 runes = {
     "frey": np.array([
         [0, 1, 0, 1, 0, 0, 1],
