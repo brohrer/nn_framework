@@ -1,11 +1,11 @@
-import data_loader_nordic_runes as dat
+import data_loader_three_by_three as dat
 import nn_framework.activation as activation
 import nn_framework.framework as framework
 import nn_framework.error_fun as error_fun
 import nn_framework.layer as layer
 from autoencoder_viz import Printer
 
-N_NODES = [39]
+N_NODES = [9]
 
 training_set, evaluation_set = dat.get_data_sets()
 
