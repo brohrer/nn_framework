@@ -50,12 +50,6 @@ class Dense(object):
         # dv_dx = self.weights
         dy_dw = self.x.transpose() @ dy_dv
         weight_error = y_error * dy_dw
-        learning_rates = np.reshape(
-            np.random.sample(size=self.weights.size) ** 4
-            * self.learning_rate,
-            self.weights.shape)
-        self.weights -= weight_error * learning_rates
-        self.weights[np.where(self.weights > 1)] = 1
-        self.weights[np.where(self.weights < -1)] = -1
+        self.weights -= weight_error
         x_error = (y_error * dy_dv) @ self.weights.transpose()
         return x_error[:, :-1]
