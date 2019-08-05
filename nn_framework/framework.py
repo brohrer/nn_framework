@@ -67,18 +67,6 @@ class ANN(object):
         for i_layer, layer in enumerate(self.layers[::-1]):
             correction = layer.back_prop(correction)
 
-    def forward_prop_to_layer(self, x, i_layer):
-        y = x.ravel()[np.newaxis, :]
-        for layer in self.layers[:i_layer]:
-            y = layer.forward_prop(y)
-        return y.ravel()
-
-    def forward_prop_from_layer(self, x, i_layer):
-        y = x.ravel()[np.newaxis, :]
-        for layer in self.layers[i_layer:]:
-            y = layer.forward_prop(y)
-        return y.ravel()
-
     def normalize(self, values):
         """
         Transform the input/output values so that they tend to
