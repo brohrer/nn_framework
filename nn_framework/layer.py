@@ -45,11 +45,5 @@ class Dense(object):
         Propagate the outputs back through the layer.
         """
         dy_dv = self.activate.calc_d(self.y)
-        # v = self.x @ self.weights
-        # dv_dw = self.x
-        # dv_dx = self.weights
-        dy_dw = self.x.transpose() @ dy_dv
-        weight_error = y_error * dy_dw
-        self.weights -= weight_error
         x_error = (y_error * dy_dv) @ self.weights.transpose()
         return x_error[:, :-1]
