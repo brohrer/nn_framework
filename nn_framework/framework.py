@@ -39,7 +39,6 @@ class ANN(object):
             error = self.error_fun.calc(x, y)
             error_d = self.error_fun.calc_d(x, y)
             self.error_history.append((np.mean(error**2))**.5)
-            self.back_prop(error * error_d)
 
             if (i_iter + 1) % self.viz_interval == 0:
                 self.report()
@@ -62,10 +61,6 @@ class ANN(object):
         for layer in self.layers:
             y = layer.forward_prop(y)
         return y.ravel()
-
-    def back_prop(self, correction):
-        for i_layer, layer in enumerate(self.layers[::-1]):
-            correction = layer.back_prop(correction)
 
     def forward_prop_to_layer(self, x, i_layer):
         y = x.ravel()[np.newaxis, :]
