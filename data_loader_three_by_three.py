@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 def get_data_sets():
@@ -111,14 +112,11 @@ def get_data_sets():
         ]),
     ]
 
-    def training_set():
-        while True:
-            index = np.random.choice(len(examples))
-            yield examples[index]
+    for example in examples:
+        plt.figure()
+        plt.imshow(example, cmap="bone")
+        plt.show()
 
-    def evaluation_set():
-        while True:
-            index = np.random.choice(len(examples))
-            yield examples[index]
 
-    return training_set, evaluation_set
+if __name__ == "__main__":
+    get_data_sets()
