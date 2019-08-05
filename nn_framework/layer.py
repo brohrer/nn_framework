@@ -39,10 +39,3 @@ class Dense(object):
         v = self.x @ self.weights
         self.y = self.activate.calc(v)
         return self.y
-
-    def back_prop(self, y_error):
-        """
-        Propagate the outputs back through the layer.
-        """
-        x_error = y_error @ self.weights.transpose()
-        return x_error[:, :-1]
