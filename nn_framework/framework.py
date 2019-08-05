@@ -9,7 +9,6 @@ class ANN(object):
         self,
         model=None,
         error_fun=None,
-        printer=None,
         expected_range=(-1, 1),
     ):
         self.layers = model
@@ -21,7 +20,6 @@ class ANN(object):
         self.reporting_bin_size = int(1e3)
         self.report_min = -3
         self.report_max = 0
-        self.printer = printer
         self.expected_range = expected_range
 
         self.reports_path = "reports"
@@ -39,11 +37,9 @@ class ANN(object):
             error = self.error_fun.calc(x, y)
             error_d = self.error_fun.calc_d(x, y)
             self.error_history.append((np.mean(error**2))**.5)
-            self.back_prop(error * error_d)
 
             if (i_iter + 1) % self.viz_interval == 0:
                 self.report()
-                self.printer.render(self, x, f"train_{i_iter + 1:08d}")
 
     def evaluate(self, evaluation_set):
         for i_iter in range(self.n_iter_evaluate):
@@ -54,7 +50,6 @@ class ANN(object):
 
             if (i_iter + 1) % self.viz_interval == 0:
                 self.report()
-                self.printer.render(self, x, f"eval_{i_iter + 1:08d}")
 
     def forward_prop(self, x):
         # Convert the inputs into a 2D array of the right shape.
@@ -62,10 +57,6 @@ class ANN(object):
         for layer in self.layers:
             y = layer.forward_prop(y)
         return y.ravel()
-
-    def back_prop(self, correction):
-        for i_layer, layer in enumerate(self.layers[::-1]):
-            correction = layer.back_prop(correction)
 
     def normalize(self, values):
         """
