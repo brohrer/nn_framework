@@ -8,11 +8,9 @@ class ANN(object):
     def __init__(
         self,
         model=None,
-        error_fun=None,
         expected_range=(-1, 1),
     ):
         self.layers = model
-        self.error_fun = error_fun
         self.error_history = []
         self.n_iter_train = int(1e8)
         self.n_iter_evaluate = int(1e6)
@@ -34,9 +32,7 @@ class ANN(object):
         for i_iter in range(self.n_iter_train):
             x = self.normalize(next(training_set()).ravel())
             y = self.forward_prop(x)
-            error = self.error_fun.calc(x, y)
-            error_d = self.error_fun.calc_d(x, y)
-            self.error_history.append((np.mean(error**2))**.5)
+            self.error_history.append(1)
 
             if (i_iter + 1) % self.viz_interval == 0:
                 self.report()
@@ -45,8 +41,7 @@ class ANN(object):
         for i_iter in range(self.n_iter_evaluate):
             x = self.normalize(next(evaluation_set()).ravel())
             y = self.forward_prop(x)
-            error = self.error_fun.calc(x, y)
-            self.error_history.append((np.mean(error**2))**.5)
+            self.error_history.append(1)
 
             if (i_iter + 1) % self.viz_interval == 0:
                 self.report()
