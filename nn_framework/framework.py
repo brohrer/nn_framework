@@ -34,10 +34,3 @@ class ANN(object):
         scale_factor = max_val - min_val
         offset_factor = min_val
         return (values - offset_factor) / scale_factor - .5
-
-    def denormalize(self, transformed_values):
-        min_val = self.expected_range[0]
-        max_val = self.expected_range[1]
-        scale_factor = 2 / (max_val - min_val)
-        offset_factor = min_val - 1
-        return transformed_values / scale_factor - offset_factor
