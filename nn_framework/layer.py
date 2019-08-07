@@ -23,15 +23,3 @@ class Dense(object):
         self.w_grad = np.zeros((self.m_inputs + 1, self.n_outputs))
         self.x = np.zeros((1, self.m_inputs + 1))
         self.y = np.zeros((1, self.n_outputs))
-
-    def forward_prop(self, inputs):
-        """
-        Propagate the inputs forward through the network.
-
-        inputs: 2D array
-            One column array of input values.
-        """
-        bias = np.ones((1, 1))
-        self.x = np.concatenate((inputs, bias), axis=1)
-        self.y = self.x @ self.weights
-        return self.y

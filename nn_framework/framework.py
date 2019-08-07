@@ -18,19 +18,11 @@ class ANN(object):
     def train(self, training_set):
         for i_iter in range(self.n_iter_train):
             x = self.normalize(next(training_set()).ravel())
-            y = self.forward_prop(x)
-            print(y)
+            print(x)
 
     def evaluate(self, evaluation_set):
         for i_iter in range(self.n_iter_evaluate):
             x = self.normalize(next(evaluation_set()).ravel())
-            y = self.forward_prop(x)
-
-    def forward_prop(self, x):
-        # Convert the inputs into a 2D array of the right shape.
-        y = x.ravel()[np.newaxis, :]
-        self.layers[0].forward_prop(y)
-        return y.ravel()
 
     def normalize(self, values):
         """
