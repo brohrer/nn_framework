@@ -1,6 +1,5 @@
 import data_loader_two_by_two as dat
 import nn_framework.framework as framework
-import nn_framework.layer as layer
 
 training_set, evaluation_set = dat.get_data_sets()
 
