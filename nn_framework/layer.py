@@ -6,14 +6,11 @@ class Dense(object):
         self,
         m_inputs,
         n_outputs,
-        activate,
         debug=False,
     ):
         self.debug = debug
         self.m_inputs = int(m_inputs)
         self.n_outputs = int(n_outputs)
-        self.activate = activate
-
         self.learning_rate = .05
 
         # Choose random weights.
@@ -36,6 +33,5 @@ class Dense(object):
         """
         bias = np.ones((1, 1))
         self.x = np.concatenate((inputs, bias), axis=1)
-        v = self.x @ self.weights
-        self.y = self.activate.calc(v)
+        self.y = self.x @ self.weights
         return self.y
