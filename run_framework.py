@@ -8,10 +8,9 @@ input_value_range = (0, 1)
 n_pixels = sample.shape[0] * sample.shape[1]
 
 n_nodes = [n_pixels, n_pixels]
-model = [(layer.Dense(n_nodes[0], n_nodes[1]))]
 
 autoencoder = framework.ANN(
-    model=model,
+    model=None,
     expected_range=input_value_range,
 )
 autoencoder.train(training_set)
