@@ -3,7 +3,7 @@ import nn_framework.activation as activation
 import nn_framework.framework as framework
 import nn_framework.layer as layer
 
-N_NODES = [7, 4, 6]
+N_NODES = [5]
 
 training_set, evaluation_set = dat.get_data_sets()
 
