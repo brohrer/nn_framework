@@ -10,10 +10,10 @@ input_value_range = (0, 1)
 n_pixels = sample.shape[0] * sample.shape[1]
 
 n_nodes = [n_pixels, n_pixels]
-model = [(layer.Dense(
+model = [layer.Dense(
     n_nodes[0],
     n_nodes[1],
-    activation.tanh))]
+    activation.tanh)]
 
 autoencoder = framework.ANN(
     model=model,
