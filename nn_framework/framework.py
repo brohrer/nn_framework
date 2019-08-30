@@ -29,7 +29,7 @@ class ANN(object):
     def forward_prop(self, x):
         # Convert the inputs into a 2D array of the right shape.
         y = x.ravel()[np.newaxis, :]
-        self.layers[0].forward_prop(y)
+        y = self.layers[0].forward_prop(y)
         return y.ravel()
 
     def normalize(self, values):
