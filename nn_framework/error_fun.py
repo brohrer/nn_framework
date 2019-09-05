@@ -21,4 +21,4 @@ class sqr(object):
 
     @staticmethod
     def calc_d(x, y):
-        return -2 * (y - x)
+        return 2 * (y - x)
