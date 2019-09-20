@@ -56,7 +56,7 @@ class Dense(object):
         #     self.weights.shape)
         # self.weights -= de_dw * learning_rates
         self.weights -= de_dw * self.learning_rate
-        self.weights[np.where(self.weights > 1)] = 1
-        self.weights[np.where(self.weights < -1)] = -1
+        # self.weights[np.where(self.weights > 1)] = 1
+        # self.weights[np.where(self.weights < -1)] = -1
         de_dx = (de_dy * dy_dv) @ self.weights.transpose()
         return de_dx[:, :-1]
