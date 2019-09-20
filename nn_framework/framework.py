@@ -63,9 +63,10 @@ class ANN(object):
             y = layer.forward_prop(y)
         return y.ravel()
 
-    def back_prop(self, correction):
+    def back_prop(self, de_dy):
         for i_layer, layer in enumerate(self.layers[::-1]):
-            correction = layer.back_prop(correction)
+            de_dx = layer.back_prop(de_dy)
+            de_dy = de_dx
 
     def forward_prop_to_layer(self, x, i_layer):
         y = x.ravel()[np.newaxis, :]
