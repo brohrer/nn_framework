@@ -11,7 +11,7 @@ class Dense(object):
         self.m_inputs = int(m_inputs)
         self.n_outputs = int(n_outputs)
         self.activate = activate
-        self.learning_rate = .05
+        self.learning_rate = .001
 
         # Choose random weights.
         # Inputs match to rows. Outputs match to columns.
@@ -43,11 +43,11 @@ class Dense(object):
         # dv_dx = self.weights
         dy_dw = self.x.transpose() @ dy_dv
         de_dw = de_dy * dy_dw
-        learning_rates = np.reshape(
-            np.random.sample(size=self.weights.size) ** 4
-            * self.learning_rate,
-            self.weights.shape)
-        self.weights -= de_dw * learning_rates
+        # learning_rates = np.reshape(
+        #     np.random.sample(size=self.weights.size) ** 4
+        #     * self.learning_rate,
+        #     self.weights.shape)
+        self.weights -= de_dw * self.learning_rate
         self.weights[np.where(self.weights > 1)] = 1
         self.weights[np.where(self.weights < -1)] = -1
         de_dx = (de_dy * dy_dv) @ self.weights.transpose()
