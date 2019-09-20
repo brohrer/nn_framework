@@ -40,9 +40,9 @@ class Dense(object):
         self.y = self.activate.calc(v)
         return self.y
 
-    def back_prop(self, y_grad):
+    def back_prop(self, de_dy):
         """
         Propagate the outputs back through the layer.
         """
-        x_grad = y_grad @ self.weights.transpose()
-        return x_grad[:, :-1]
+        de_dx = de_dy @ self.weights.transpose()
+        return de_dx[:, :-1]
