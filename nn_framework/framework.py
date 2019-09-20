@@ -39,7 +39,7 @@ class ANN(object):
             error = self.error_fun.calc(x, y)
             error_d = self.error_fun.calc_d(x, y)
             self.error_history.append((np.mean(error**2))**.5)
-            self.back_prop(error * error_d)
+            self.back_prop(error_d)
 
             if (i_iter + 1) % self.viz_interval == 0:
                 self.report()
