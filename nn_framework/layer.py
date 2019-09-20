@@ -14,7 +14,7 @@ class Dense(object):
         self.n_outputs = int(n_outputs)
         self.activate = activate
 
-        self.learning_rate = .05
+        self.learning_rate = .001
 
         # Choose random weights.
         # Inputs match to rows. Outputs match to columns.
