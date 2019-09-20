@@ -7,16 +7,23 @@ class Dense(object):
         m_inputs,
         n_outputs,
         activate,
+        debug=False,
     ):
+        self.debug = debug
         self.m_inputs = int(m_inputs)
         self.n_outputs = int(n_outputs)
         self.activate = activate
+
         self.learning_rate = .001
 
         # Choose random weights.
         # Inputs match to rows. Outputs match to columns.
-        self.weights = (np.random.sample(
+        # Add one to m_inputs to account for the bias term.
+        # self.initial_weight_scale = 1 / self.m_inputs
+        self.initial_weight_scale = 1
+        self.weights = self.initial_weight_scale * (np.random.sample(
             size=(self.m_inputs + 1, self.n_outputs)) * 2  - 1)
+        self.w_grad = np.zeros((self.m_inputs + 1, self.n_outputs))
         self.x = np.zeros((1, self.m_inputs + 1))
         self.y = np.zeros((1, self.n_outputs))
 
@@ -40,15 +47,9 @@ class Dense(object):
         dy_dv = self.activate.calc_d(self.y)
         # v = self.x @ self.weights
         # dv_dw = self.x
-        # dv_dx = self.weights
+        d dv_dx = self.weights
         dy_dw = self.x.transpose() @ dy_dv
         de_dw = de_dy * dy_dw
-        # learning_rates = np.reshape(
-        #     np.random.sample(size=self.weights.size) ** 4
-        #     * self.learning_rate,
-        #     self.weights.shape)
         self.weights -= de_dw * self.learning_rate
-        self.weights[np.where(self.weights > 1)] = 1
-        self.weights[np.where(self.weights < -1)] = -1
         de_dx = (de_dy * dy_dv) @ self.weights.transpose()
         return de_dx[:, :-1]
