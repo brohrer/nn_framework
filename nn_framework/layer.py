@@ -40,7 +40,7 @@ class Dense(object):
         self.y = self.activate.calc(v)
         return self.y
 
-    def back_prop(self, y_error):
+    def back_prop(self, de_dy):
         """
         Propagate the outputs back through the layer.
         """
@@ -49,13 +49,13 @@ class Dense(object):
         # dv_dw = self.x
         # dv_dx = self.weights
         dy_dw = self.x.transpose() @ dy_dv
-        weight_error = y_error * dy_dw
+        de_dw = de_dy * dy_dw
         learning_rates = np.reshape(
             np.random.sample(size=self.weights.size) ** 4
             * self.learning_rate,
             self.weights.shape)
-        self.weights -= weight_error * learning_rates
+        self.weights -= de_dw * learning_rates
         self.weights[np.where(self.weights > 1)] = 1
         self.weights[np.where(self.weights < -1)] = -1
-        x_error = (y_error * dy_dv) @ self.weights.transpose()
-        return x_error[:, :-1]
+        de_dx = (de_dy * dy_dv) @ self.weights.transpose()
+        return de_dx[:, :-1]
