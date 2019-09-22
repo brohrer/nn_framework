@@ -47,7 +47,7 @@ class Dense(object):
         dy_dv = self.activate.calc_d(self.y)
         # v = self.x @ self.weights
         # dv_dw = self.x
-        d dv_dx = self.weights
+        # dv_dx = self.weights
         dy_dw = self.x.transpose() @ dy_dv
         de_dw = de_dy * dy_dw
         self.weights -= de_dw * self.learning_rate
